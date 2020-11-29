@@ -1,4 +1,5 @@
 package vtp.lab.demo.form;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +10,7 @@ public class EmployeeEditorController implements ActionListener {
     EmployeeEditor employeeEditor;
     Employee employee;
 
-    EmployeeEditorController(EmployeeEditor employeeEditor){
+    EmployeeEditorController(EmployeeEditor employeeEditor) {
         this.employeeEditor = employeeEditor;
         this.employeeEditor.saveButton.addActionListener(this);
         this.employeeEditor.cancelButton.addActionListener(this);
@@ -17,15 +18,15 @@ public class EmployeeEditorController implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == this.employeeEditor.cancelButton){
-                JOptionPane.showMessageDialog(null,
-                        "Cancel not implemented",
-                        "Warning",
-                        JOptionPane.PLAIN_MESSAGE);
+        if (e.getSource() == this.employeeEditor.cancelButton) {
+            JOptionPane.showMessageDialog(null,
+                    "Cancel not implemented",
+                    "Warning",
+                    JOptionPane.PLAIN_MESSAGE);
         }
 
         //Save Question action.
-        if(e.getSource()== this.employeeEditor.saveButton) {
+        if (e.getSource() == this.employeeEditor.saveButton) {
             JOptionPane.showMessageDialog(null,
                     "Saving employee",
                     "Warning",

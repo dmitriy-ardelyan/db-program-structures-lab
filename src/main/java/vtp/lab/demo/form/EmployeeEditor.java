@@ -26,7 +26,6 @@ public class EmployeeEditor {
     JLabel topLabel;
 
     EmployeeEditor(){
-        super();
         EmployeeEditorController employeeEditorController = new EmployeeEditorController(this);
     }
 
@@ -48,16 +47,6 @@ public class EmployeeEditor {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-    }
-
-    public boolean isQuestionFormFilled(){
-        boolean result = true;
-        if(this.firstNameTextField.getText().length()==0) result = false;
-        if(this.lastNameTextField.getText().length()==0) result = false;
-        if(this.parentNameTextField.getText().length()==0) result = false;
-        if(this.titleTextField.getText().length()==0) result = false;
-        if(this.salaryTextField.getText().length()==0) result = false;
-        return result;
     }
 
 }
