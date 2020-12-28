@@ -1,4 +1,4 @@
-package vtp.lab.demo.new_employee;
+package vtp.lab.forms.new_employee;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

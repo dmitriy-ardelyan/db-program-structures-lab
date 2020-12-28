@@ -1,4 +1,4 @@
-package vtp.lab.demo.new_employee;
+package vtp.lab.forms.new_employee;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -25,15 +25,11 @@ public class EmployeeRegistration {
     private JPanel topHeaderSubPanel;
     JLabel topLabel;
 
-    EmployeeRegistration(){
+    public EmployeeRegistration(){
         EmployeeRegistrationController employeeRegistrationController = new EmployeeRegistrationController(this);
     }
 
-    public static void main(String[] args) {
-        formSetup();
-    }
-
-    public static void formSetup(){
+    public void formSetup(){
         EmployeeRegistration employeeRegistration = new EmployeeRegistration();
         Border border = BorderFactory.createLineBorder(Color.BLUE, 1);
 
