@@ -29,7 +29,6 @@ public class EmployeeRegistrationController implements ActionListener {
         }
 
         if (e.getSource() == this.employeeRegistration.saveButton) {
-
             try {
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_db",
                         "root",
