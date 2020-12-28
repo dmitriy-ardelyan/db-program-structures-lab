@@ -1,10 +1,10 @@
-package vtp.lab.demo.form;
+package vtp.lab.demo.new_employee;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
-public class EmployeeEditor {
+public class EmployeeRegistration {
     JPanel rootPanel;
     private JPanel westLabelsPanel;
     JPanel eastFieldsPanel;
@@ -25,8 +25,8 @@ public class EmployeeEditor {
     private JPanel topHeaderSubPanel;
     JLabel topLabel;
 
-    EmployeeEditor(){
-        EmployeeEditorController employeeEditorController = new EmployeeEditorController(this);
+    EmployeeRegistration(){
+        EmployeeRegistrationController employeeRegistrationController = new EmployeeRegistrationController(this);
     }
 
     public static void main(String[] args) {
@@ -34,16 +34,16 @@ public class EmployeeEditor {
     }
 
     public static void formSetup(){
-        EmployeeEditor employeeEditor = new EmployeeEditor();
+        EmployeeRegistration employeeRegistration = new EmployeeRegistration();
         Border border = BorderFactory.createLineBorder(Color.BLUE, 1);
 
-        employeeEditor.firstNameTextField.setBorder(border);
-        employeeEditor.lastNameTextField.setBorder(border);
-        employeeEditor.parentNameTextField.setBorder(border);
-        employeeEditor.titleTextField.setBorder(border);
-        employeeEditor.salaryTextField.setBorder(border);
+        employeeRegistration.firstNameTextField.setBorder(border);
+        employeeRegistration.lastNameTextField.setBorder(border);
+        employeeRegistration.parentNameTextField.setBorder(border);
+        employeeRegistration.titleTextField.setBorder(border);
+        employeeRegistration.salaryTextField.setBorder(border);
         JFrame frame = new JFrame("Questions Editor");
-        frame.setContentPane(employeeEditor.rootPanel);
+        frame.setContentPane(employeeRegistration.rootPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

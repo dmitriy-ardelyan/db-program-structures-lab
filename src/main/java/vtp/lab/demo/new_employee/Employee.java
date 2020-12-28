@@ -1,4 +1,4 @@
-package vtp.lab.demo.form;
+package vtp.lab.demo.new_employee;
 
 public class Employee {
     private String firstName;
