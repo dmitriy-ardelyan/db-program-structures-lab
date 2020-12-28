@@ -27,6 +27,7 @@ public class EmployeeRegistrationController implements ActionListener {
                     "Warning",
                     JOptionPane.PLAIN_MESSAGE);
         }
+
         if (e.getSource() == this.employeeRegistration.saveButton) {
             try {
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_db",
