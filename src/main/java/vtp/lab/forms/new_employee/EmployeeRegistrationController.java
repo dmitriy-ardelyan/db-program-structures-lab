@@ -30,9 +30,9 @@ public class EmployeeRegistrationController implements ActionListener {
 
         if (e.getSource() == this.employeeRegistration.saveButton) {
             try {
-                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_db",
+                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_db?&serverTimezone=UTC",
                         "root",
-                        "root521313");
+                        "PaleAle85");
 
                 String query = "INSERT INTO employee values('" +
                         this.employeeRegistration.firstNameTextField.getText() +
