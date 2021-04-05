@@ -4,13 +4,14 @@ import javax.swing.*;
 
 public class LandingForm {
     private JLabel headerTextField;
-    private JButton manageEmployeesButton;
+    private JButton addEmployeesButton;
     private JButton manageSubordinatesButton;
     private JButton manageResponsibilitiesButton;
     private JPanel rootPanel;
+    private JButton manageEmployeeButton;
 
-    public JButton getManageEmployeesButton() {
-        return manageEmployeesButton;
+    public JButton getAddEmployeesButton() {
+        return addEmployeesButton;
     }
 
     public JButton getManageSubordinatesButton() {
@@ -19,6 +20,10 @@ public class LandingForm {
 
     public JButton getManageResponsibilitiesButton() {
         return manageResponsibilitiesButton;
+    }
+
+    public JButton getManageEmployeeButton() {
+        return manageEmployeeButton;
     }
 
     public JPanel getRootPanel(){

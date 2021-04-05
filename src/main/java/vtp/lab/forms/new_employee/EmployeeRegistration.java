@@ -24,6 +24,7 @@ public class EmployeeRegistration {
      JTextArea salaryTextField;
     private JPanel topHeaderSubPanel;
     JLabel topLabel;
+    JFrame jFrame;
 
     public EmployeeRegistration(){
         EmployeeRegistrationController employeeRegistrationController = new EmployeeRegistrationController(this);
@@ -38,11 +39,16 @@ public class EmployeeRegistration {
         employeeRegistration.parentNameTextField.setBorder(border);
         employeeRegistration.titleTextField.setBorder(border);
         employeeRegistration.salaryTextField.setBorder(border);
-        JFrame frame = new JFrame("Questions Editor");
-        frame.setContentPane(employeeRegistration.rootPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+
+        jFrame = new JFrame("New Employee");
+        jFrame.setContentPane(employeeRegistration.rootPanel);
+        jFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        jFrame.pack();
+        jFrame.setVisible(true);
+    }
+
+    public void closeForm(){
+        jFrame.dispose();
     }
 
 }

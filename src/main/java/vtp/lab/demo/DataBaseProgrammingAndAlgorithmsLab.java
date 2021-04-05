@@ -10,7 +10,7 @@ public class DataBaseProgrammingAndAlgorithmsLab {
         frame.setContentPane(landingForm.getRootPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setSize(700,200);
+        frame.setSize(700,700);
         frame.setVisible(true);
     }
 }
