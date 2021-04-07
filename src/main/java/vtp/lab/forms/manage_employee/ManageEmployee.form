@@ -33,22 +33,22 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="94ab7" class="javax.swing.JButton" binding="startTestButton">
+          <component id="94ab7" class="javax.swing.JButton" binding="updateUserButton">
             <constraints/>
             <properties>
-              <text value="Start Test"/>
+              <text value="Update User"/>
             </properties>
           </component>
-          <component id="ef021" class="javax.swing.JButton" binding="confirmAnswerButton">
+          <component id="ef021" class="javax.swing.JButton" binding="deleteUserButton">
             <constraints/>
             <properties>
-              <text value="Confirm Answer"/>
+              <text value="Delete User"/>
             </properties>
           </component>
-          <component id="af8b5" class="javax.swing.JButton" binding="nextQuestionButton">
+          <component id="af8b5" class="javax.swing.JButton" binding="cancelUserButton">
             <constraints/>
             <properties>
-              <text value="Next Question"/>
+              <text value="Cancel"/>
             </properties>
           </component>
         </children>
@@ -141,15 +141,16 @@
               </component>
               <component id="83d54" class="javax.swing.JButton" binding="applyFiltersButton">
                 <constraints>
-                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <actionCommand value="Search"/>
                   <text value="Apply Filters"/>
                 </properties>
               </component>
             </children>
           </grid>
-          <grid id="dea99" binding="testBodyPanel" layout-manager="GridLayoutManager" row-count="5" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="dea99" binding="userPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="50" bottom="0" right="50"/>
             <constraints border-constraint="Center"/>
             <properties>
@@ -157,61 +158,19 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="794f3" class="javax.swing.JButton" binding="answer2Button">
+              <scrollpane id="57890">
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="-1" height="100"/>
-                  </grid>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
-                <properties>
-                  <text value="Answer 2"/>
-                </properties>
-              </component>
-              <component id="8184e" class="javax.swing.JButton" binding="answer3Button">
-                <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="-1" height="100"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <text value="Answer 3"/>
-                </properties>
-              </component>
-              <component id="eb267" class="javax.swing.JButton" binding="answer4Button">
-                <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="-1" height="100"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <text value="Answer 4"/>
-                </properties>
-              </component>
-              <component id="24626" class="javax.swing.JLabel" binding="questionInfoLabel">
-                <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="700" height="100"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <horizontalAlignment value="0"/>
-                  <horizontalTextPosition value="0"/>
-                  <text value=" INFO:"/>
-                  <verifyInputWhenFocusTarget value="false"/>
-                  <verticalAlignment value="0"/>
-                </properties>
-              </component>
-              <component id="a84f0" class="javax.swing.JLabel" binding="questionLabel">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="-1" height="100"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <horizontalAlignment value="0"/>
-                  <text value="Select options and click Start Test"/>
-                </properties>
-              </component>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="3bd3a" class="javax.swing.JTable" binding="searchResultTable">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
+              </scrollpane>
             </children>
           </grid>
         </children>

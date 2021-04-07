@@ -1,13 +1,12 @@
 package vtp.lab.forms.landing_form;
 
-import main.java.vtp.lab.PropertiesLoader;
+import vtp.lab.forms.BaseFormController;
 import vtp.lab.forms.manage_employee.ManageEmployee;
 import vtp.lab.forms.new_employee.EmployeeRegistration;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class LandingFormController implements ActionListener {
+public class LandingFormController extends BaseFormController {
 
     LandingForm landingForm;
 
@@ -17,7 +16,6 @@ public class LandingFormController implements ActionListener {
         this.landingForm.getManageSubordinatesButton().addActionListener(this);
         this.landingForm.getManageResponsibilitiesButton().addActionListener(this);
         this.landingForm.getManageEmployeeButton().addActionListener(this);
-        PropertiesLoader.loadGlobalProperties(this.getClass(),"db.properties");
     }
 
     public void actionPerformed(ActionEvent e) {

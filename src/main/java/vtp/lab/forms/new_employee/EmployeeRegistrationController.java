@@ -1,32 +1,26 @@
 package vtp.lab.forms.new_employee;
 
-import main.java.vtp.lab.PropertiesSupplier;
-import vtp.lab.forms.landing_form.LandingForm;
+import vtp.lab.forms.BaseFormController;
+import vtp.lab.models.Employee;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class EmployeeRegistrationController implements ActionListener {
+public class EmployeeRegistrationController extends BaseFormController {
 
     EmployeeRegistration employeeRegistration;
     Employee employee;
-    String dataBaseConnectionString;
-    String user;
-    String password;
+
 
     EmployeeRegistrationController(EmployeeRegistration employeeRegistration) {
         this.employeeRegistration = employeeRegistration;
         this.employeeRegistration.saveButton.addActionListener(this);
         this.employeeRegistration.cancelButton.addActionListener(this);
-        dataBaseConnectionString = PropertiesSupplier.getProperty("connection.string");
-        user = PropertiesSupplier.getProperty("user");
-        password = PropertiesSupplier.getProperty("password");
     }
 
     public void actionPerformed(ActionEvent e) {

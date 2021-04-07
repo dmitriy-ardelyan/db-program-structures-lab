@@ -2,6 +2,7 @@ package vtp.lab.forms.manage_employee;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.util.Random;
 
@@ -13,17 +14,12 @@ public class ManageEmployee {
     private JPanel centerSubPanel;
     private JLabel headerLabel;
     private JPanel filtersSubPanel;
-    private JPanel testBodyPanel;
+    private JPanel userPanel;
     private JLabel nameFilterLabel;
     private JLabel titleFilterLabel;
-    JLabel questionLabel;
-    JButton answer2Button;
-    JButton answer3Button;
-    JButton answer4Button;
-    JLabel questionInfoLabel;
-    JButton startTestButton;
-    JButton confirmAnswerButton;
-    JButton nextQuestionButton;
+    JButton updateUserButton;
+    JButton deleteUserButton;
+    JButton cancelUserButton;
     private JTextField nameFilterTextField;
     private JTextField titleFilterTextField;
     private JLabel minSalaryLabel;
@@ -31,11 +27,12 @@ public class ManageEmployee {
     private JLabel maxSalaryLabel;
     private JTextField maxSalaryTextField;
     private JButton applyFiltersButton;
+    private JTable searchResultTable;
     JFrame jFrame;
 
-    public ManageEmployee(){
+    public ManageEmployee() {
         super();
-
+        ManageEmployeeController manageEmployeeController = new ManageEmployeeController(this);
     }
 
     public void displayHeader(String headerString){
@@ -54,5 +51,9 @@ public class ManageEmployee {
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
+    }
+
+    public JButton getApplyFiltersButton() {
+        return applyFiltersButton;
     }
 }
