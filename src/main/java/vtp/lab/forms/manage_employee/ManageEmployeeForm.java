@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ManageEmployeeForm {
@@ -56,6 +57,7 @@ public class ManageEmployeeForm {
         jFrame = new JFrame("Manage Employee");
         jFrame.setContentPane(this.rootPanel);
         jFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        jFrame.setLocationRelativeTo(null);
         jFrame.pack();
         jFrame.setVisible(true);
     }
@@ -71,7 +73,7 @@ public class ManageEmployeeForm {
     private void fillTableWithAllEmployees(){
         DefaultTableModel model = (DefaultTableModel) searchResultTable.getModel();
         ArrayList<Employee> employees = Employee.getAllEmployees();
-
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
         model.setRowCount(0);
         for (Employee employee: employees){
             model.addRow(new Object[]{
@@ -79,7 +81,7 @@ public class ManageEmployeeForm {
                     employee.getLastName(),
                     employee.getSurname(),
                     employee.getTitle(),
-                    employee.getSalary()
+                    decimalFormat.format(employee.getSalary())
             });
         }
     }

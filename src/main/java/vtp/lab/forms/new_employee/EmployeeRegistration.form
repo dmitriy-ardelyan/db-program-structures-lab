@@ -78,7 +78,8 @@
           <component id="43cfa" class="javax.swing.JTextArea" binding="firstNameTextField">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="50"/>
+                <preferred-size width="300" height="50"/>
+                <maximum-size width="300" height="50"/>
               </grid>
             </constraints>
             <properties>
@@ -89,7 +90,8 @@
           <component id="279a4" class="javax.swing.JTextArea" binding="lastNameTextField">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="50"/>
+                <preferred-size width="300" height="50"/>
+                <maximum-size width="300" height="50"/>
               </grid>
             </constraints>
             <properties>
@@ -101,7 +103,8 @@
           <component id="a37f1" class="javax.swing.JTextArea" binding="surnameTextField">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="50"/>
+                <preferred-size width="300" height="50"/>
+                <maximum-size width="300" height="50"/>
               </grid>
             </constraints>
             <properties>
@@ -110,10 +113,11 @@
               <wrapStyleWord value="true"/>
             </properties>
           </component>
-          <component id="8bf79" class="javax.swing.JTextArea" binding="titleTextField">
+          <component id="57415" class="javax.swing.JTextArea" binding="salaryTextField">
             <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="50"/>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="300" height="50"/>
+                <maximum-size width="300" height="50"/>
               </grid>
             </constraints>
             <properties>
@@ -121,16 +125,14 @@
               <wrapStyleWord value="true"/>
             </properties>
           </component>
-          <component id="57415" class="javax.swing.JTextArea" binding="salaryTextField">
+          <component id="4fa14" class="javax.swing.JComboBox" binding="titleDropDown">
             <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="50"/>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="300" height="-1"/>
+                <maximum-size width="300" height="-1"/>
               </grid>
             </constraints>
-            <properties>
-              <lineWrap value="true"/>
-              <wrapStyleWord value="true"/>
-            </properties>
+            <properties/>
           </component>
         </children>
       </grid>

@@ -11,6 +11,7 @@ public class DataBaseProgrammingAndAlgorithmsLab {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setSize(700,350);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 }

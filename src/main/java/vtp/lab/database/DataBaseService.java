@@ -6,6 +6,7 @@ import vtp.lab.models.Employee;
 
 import javax.swing.*;
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -40,7 +41,8 @@ public class DataBaseService {
         ArrayList<Employee> employees = new ArrayList<>();
         try {
             Connection connection = getDataBaseConnection();
-            String query = "Select * from hr_db.employee";
+            String query = "SELECT first_name, last_name, surname, tts.title, salary FROM hr_db.employee as e " +
+                    "inner join hr_db.titles_list as tts on e.title = tts.id";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {

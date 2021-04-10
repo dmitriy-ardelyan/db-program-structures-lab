@@ -47,7 +47,7 @@ public class ManageTitles {
         jFrame = new JFrame("Manage Job Titles");
         jFrame.setContentPane(rootPanel);
         jFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        //jFrame.setSize(700,350);
+        jFrame.setLocationRelativeTo(null);
         jFrame.pack();
         jFrame.setVisible(true);
     }

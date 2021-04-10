@@ -20,36 +20,34 @@ public class EmployeeRegistration {
      JTextArea firstNameTextField;
      JTextArea lastNameTextField;
      JTextArea surnameTextField;
-     JTextArea titleTextField;
      JTextArea salaryTextField;
     private JPanel topHeaderSubPanel;
     JLabel topLabel;
+    JComboBox titleDropDown;
     JFrame jFrame;
+
+    public JComboBox getTitleDropDown() {
+        return titleDropDown;
+    }
 
     public EmployeeRegistration(){
         EmployeeRegistrationController employeeRegistrationController = new EmployeeRegistrationController(this);
     }
 
     public void formSetup(){
-        //EmployeeRegistration employeeRegistration = new EmployeeRegistration();
         Border border = BorderFactory.createLineBorder(Color.BLUE, 1);
-
-        /*employeeRegistration.firstNameTextField.setBorder(border);
-        employeeRegistration.lastNameTextField.setBorder(border);
-        employeeRegistration.surnameTextField.setBorder(border);
-        employeeRegistration.titleTextField.setBorder(border);
-        employeeRegistration.salaryTextField.setBorder(border);*/
 
         firstNameTextField.setBorder(border);
         lastNameTextField.setBorder(border);
         surnameTextField.setBorder(border);
-        titleTextField.setBorder(border);
         salaryTextField.setBorder(border);
 
         jFrame = new JFrame("New Employee");
         jFrame.setContentPane(rootPanel);
         jFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        jFrame.setLocationRelativeTo(null);
         jFrame.pack();
+        jFrame.setSize(550,350);
         jFrame.setVisible(true);
     }
 

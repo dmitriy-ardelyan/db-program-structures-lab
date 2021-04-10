@@ -14,13 +14,12 @@ import java.sql.Statement;
 public class EmployeeRegistrationController implements ActionListener {
 
     EmployeeRegistration employeeRegistration;
-    Employee employee;
-
 
     EmployeeRegistrationController(EmployeeRegistration employeeRegistration) {
         this.employeeRegistration = employeeRegistration;
         this.employeeRegistration.saveButton.addActionListener(this);
         this.employeeRegistration.cancelButton.addActionListener(this);
+        setValuesForTitlesDropDown();
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -35,12 +34,15 @@ public class EmployeeRegistrationController implements ActionListener {
             try {
                 Connection connection = DataBaseService.getDataBaseConnection();
 
-                String query = "INSERT INTO employee (first_name,last_name,surname,title,salary) values('" +
-                        this.employeeRegistration.firstNameTextField.getText() +
-                        "','" + this.employeeRegistration.lastNameTextField.getText() +
-                        "','" + this.employeeRegistration.surnameTextField.getText() +
-                        "','" + this.employeeRegistration.titleTextField.getText() +
-                        "','" + Double.valueOf(this.employeeRegistration.salaryTextField.getText()) + "')";
+                String firstName = this.employeeRegistration.firstNameTextField.getText();
+                String lastName = this.employeeRegistration.lastNameTextField.getText();
+                String surname = this.employeeRegistration.surnameTextField.getText();
+                String title = this.employeeRegistration.titleDropDown.getSelectedItem().toString();
+                Float salary = Float.valueOf(this.employeeRegistration.salaryTextField.getText());
+
+                String queryBlueprint = "insert into employee(first_name,last_name,surname,title,salary)\n" +
+                        "values('%s','%s','%s',(select id from titles_list where title='%s'),%f)";
+                String query = String.format(queryBlueprint, firstName, lastName, surname, title, salary);
 
                 Statement statement = connection.createStatement();
                 int result = statement.executeUpdate(query);
@@ -55,10 +57,19 @@ public class EmployeeRegistrationController implements ActionListener {
                             "Warning",
                             JOptionPane.PLAIN_MESSAGE);
                 }
-                connection.close();
+                JComponent comp = (JComponent) e.getSource();
+                Window win = SwingUtilities.getWindowAncestor(comp);
+                win.dispose();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+        }
+    }
+
+    private void setValuesForTitlesDropDown() {
+        String[] topics = DataBaseService.getJobTitles().toArray(new String[0]);
+        for (String str : topics) {
+            this.employeeRegistration.getTitleDropDown().addItem(str);
         }
     }
 }
