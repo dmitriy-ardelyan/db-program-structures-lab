@@ -9,6 +9,11 @@ public class LandingForm {
     private JButton manageResponsibilitiesButton;
     private JPanel rootPanel;
     private JButton manageEmployeeButton;
+    private JButton manageCompanyJobTitlesButton;
+
+    public JButton getManageCompanyJobTitlesButton() {
+        return manageCompanyJobTitlesButton;
+    }
 
     public JButton getAddEmployeesButton() {
         return addEmployeesButton;

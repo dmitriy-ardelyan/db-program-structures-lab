@@ -1,11 +1,23 @@
 package vtp.lab.models;
 
+import vtp.lab.database.DataBaseService;
+
+import java.util.ArrayList;
+
 public class Employee {
     private String firstName;
     private String lastName;
-    private String parentName;
+    private String surname;
     private String title;
-    private double salary;
+    private float salary;
+
+    public Employee(String first_name, String last_name, String surname, String title, float salary) {
+        this.firstName = first_name;
+        this.lastName = last_name;
+        this.surname = surname;
+        this.title = title;
+        this.salary = salary;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -23,12 +35,12 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public String getParentName() {
-        return parentName;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setParentName(String parentName) {
-        this.parentName = parentName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getTitle() {
@@ -43,7 +55,11 @@ public class Employee {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(float salary) {
         this.salary = salary;
+    }
+
+    public static ArrayList<Employee> getAllEmployees(){
+        return DataBaseService.getAllEmployees();
     }
 }

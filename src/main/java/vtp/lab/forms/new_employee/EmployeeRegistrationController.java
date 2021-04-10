@@ -1,17 +1,17 @@
 package vtp.lab.forms.new_employee;
 
-import vtp.lab.forms.BaseFormController;
+import vtp.lab.database.DataBaseService;
 import vtp.lab.models.Employee;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class EmployeeRegistrationController extends BaseFormController {
+public class EmployeeRegistrationController implements ActionListener {
 
     EmployeeRegistration employeeRegistration;
     Employee employee;
@@ -33,12 +33,12 @@ public class EmployeeRegistrationController extends BaseFormController {
 
         if (e.getSource() == this.employeeRegistration.saveButton) {
             try {
-                Connection connection = DriverManager.getConnection(dataBaseConnectionString, user, password);
+                Connection connection = DataBaseService.getDataBaseConnection();
 
-                String query = "INSERT INTO employee (first_name,last_name,parent_name,title,salary) values('" +
+                String query = "INSERT INTO employee (first_name,last_name,surname,title,salary) values('" +
                         this.employeeRegistration.firstNameTextField.getText() +
                         "','" + this.employeeRegistration.lastNameTextField.getText() +
-                        "','" + this.employeeRegistration.parentNameTextField.getText() +
+                        "','" + this.employeeRegistration.surnameTextField.getText() +
                         "','" + this.employeeRegistration.titleTextField.getText() +
                         "','" + Double.valueOf(this.employeeRegistration.salaryTextField.getText()) + "')";
 

@@ -19,7 +19,7 @@ public class EmployeeRegistration {
     private JLabel salaryLabel;
      JTextArea firstNameTextField;
      JTextArea lastNameTextField;
-     JTextArea parentNameTextField;
+     JTextArea surnameTextField;
      JTextArea titleTextField;
      JTextArea salaryTextField;
     private JPanel topHeaderSubPanel;
@@ -31,17 +31,23 @@ public class EmployeeRegistration {
     }
 
     public void formSetup(){
-        EmployeeRegistration employeeRegistration = new EmployeeRegistration();
+        //EmployeeRegistration employeeRegistration = new EmployeeRegistration();
         Border border = BorderFactory.createLineBorder(Color.BLUE, 1);
 
-        employeeRegistration.firstNameTextField.setBorder(border);
+        /*employeeRegistration.firstNameTextField.setBorder(border);
         employeeRegistration.lastNameTextField.setBorder(border);
-        employeeRegistration.parentNameTextField.setBorder(border);
+        employeeRegistration.surnameTextField.setBorder(border);
         employeeRegistration.titleTextField.setBorder(border);
-        employeeRegistration.salaryTextField.setBorder(border);
+        employeeRegistration.salaryTextField.setBorder(border);*/
+
+        firstNameTextField.setBorder(border);
+        lastNameTextField.setBorder(border);
+        surnameTextField.setBorder(border);
+        titleTextField.setBorder(border);
+        salaryTextField.setBorder(border);
 
         jFrame = new JFrame("New Employee");
-        jFrame.setContentPane(employeeRegistration.rootPanel);
+        jFrame.setContentPane(rootPanel);
         jFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         jFrame.pack();
         jFrame.setVisible(true);
