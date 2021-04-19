@@ -64,16 +64,16 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="5788b" class="javax.swing.JLabel" binding="nameFilterLabel">
+              <component id="5788b" class="javax.swing.JLabel" binding="surnameFilterLabel">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <preferredSize width="170" height="16"/>
-                  <text value="Name/Surname/Parent Name"/>
+                  <text value="Surname"/>
                 </properties>
               </component>
-              <component id="528f5" class="javax.swing.JTextField" binding="nameFilterTextField">
+              <component id="528f5" class="javax.swing.JTextField" binding="surnameFilterTextField">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="2" use-parent-layout="false">
                     <minimum-size width="200" height="-1"/>

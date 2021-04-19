@@ -3,9 +3,7 @@ package vtp.lab.forms.manage_employee;
 import vtp.lab.models.Employee;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -17,12 +15,12 @@ public class ManageEmployeeForm {
     private JLabel headerLabel;
     private JPanel filtersSubPanel;
     private JPanel userPanel;
-    private JLabel nameFilterLabel;
+    private JLabel surnameFilterLabel;
     private JLabel titleFilterLabel;
     JButton updateUserButton;
     JButton deleteUserButton;
     JButton cancelUserButton;
-    private JTextField nameFilterTextField;
+    private JTextField surnameFilterTextField;
     private JTextField titleFilterTextField;
     private JLabel minSalaryLabel;
     private JTextField minSalaryTextField;
@@ -32,12 +30,24 @@ public class ManageEmployeeForm {
     private JTable searchResultTable;
     JFrame jFrame;
 
-    public JButton getCancelUserButton() {
-        return cancelUserButton;
+    public JTextField getSurnameFilterTextField() {
+        return surnameFilterTextField;
     }
 
-    public JLabel getNameFilterLabel() {
-        return nameFilterLabel;
+    public JTextField getTitleFilterTextField() {
+        return titleFilterTextField;
+    }
+
+    public JTextField getMinSalaryTextField() {
+        return minSalaryTextField;
+    }
+
+    public JTextField getMaxSalaryTextField() {
+        return maxSalaryTextField;
+    }
+
+    public JButton getCancelUserButton() {
+        return cancelUserButton;
     }
 
     public JButton getApplyFiltersButton() {
@@ -70,12 +80,22 @@ public class ManageEmployeeForm {
         fillTableWithAllEmployees();
     }
 
-    private void fillTableWithAllEmployees(){
+    public void searchForEmployee(String surname, String title, String minSalary, String maxSalary) {
+        DefaultTableModel model = (DefaultTableModel) searchResultTable.getModel();
+        ArrayList<Employee> employees = Employee.searchEmployeesByParameters(surname, title, minSalary,maxSalary);
+        fillModelWithEmployees(model, employees);
+    }
+
+    private void fillTableWithAllEmployees() {
         DefaultTableModel model = (DefaultTableModel) searchResultTable.getModel();
         ArrayList<Employee> employees = Employee.getAllEmployees();
+        fillModelWithEmployees(model, employees);
+    }
+
+    private void fillModelWithEmployees(DefaultTableModel model, ArrayList<Employee> employees) {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         model.setRowCount(0);
-        for (Employee employee: employees){
+        for (Employee employee : employees) {
             model.addRow(new Object[]{
                     employee.getFirstName(),
                     employee.getLastName(),

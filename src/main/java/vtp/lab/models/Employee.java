@@ -59,7 +59,11 @@ public class Employee {
         this.salary = salary;
     }
 
-    public static ArrayList<Employee> getAllEmployees(){
+    public static ArrayList<Employee> getAllEmployees() {
         return DataBaseService.getAllEmployees();
+    }
+
+    public static ArrayList<Employee> searchEmployeesByParameters(String surname, String title, String minSalary, String maxSalary) {
+        return DataBaseService.getEmployeesByParameters(surname, title, minSalary, maxSalary);
     }
 }

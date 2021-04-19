@@ -2,6 +2,7 @@ package vtp.lab.database;
 
 import main.java.vtp.lab.PropertiesLoader;
 import main.java.vtp.lab.PropertiesSupplier;
+import vtp.lab.database.request_builder.EmployeeRequestBuilder;
 import vtp.lab.models.Employee;
 
 import javax.swing.*;
@@ -41,10 +42,39 @@ public class DataBaseService {
         ArrayList<Employee> employees = new ArrayList<>();
         try {
             Connection connection = getDataBaseConnection();
-            String query = "SELECT first_name, last_name, surname, tts.title, salary FROM hr_db.employee as e " +
-                    "inner join hr_db.titles_list as tts on e.title = tts.id";
+            EmployeeRequestBuilder employeeRequestBuilder = new EmployeeRequestBuilder();
+            String query = employeeRequestBuilder.create().build();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                employees.add(new Employee(
+                        resultSet.getString("first_name"),
+                        resultSet.getString("last_name"),
+                        resultSet.getString("surname"),
+                        resultSet.getString("title"),
+                        resultSet.getFloat("salary")
+                ));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return employees;
+    }
+
+    public static ArrayList<Employee> getEmployeesByParameters(String surname, String title, String minSalary, String maxSalary) {
+        ArrayList<Employee> employees = new ArrayList<>();
+        try {
+            Connection connection = getDataBaseConnection();
+            EmployeeRequestBuilder employeeRequestBuilder = new EmployeeRequestBuilder();
+            String exactQuery = employeeRequestBuilder
+                    .create()
+                    .setSurname(surname)
+                    .setTitle(title)
+                    .setMinSalary(minSalary)
+                    .setMaxSalary(maxSalary)
+                    .build();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(exactQuery);
             while (resultSet.next()) {
                 employees.add(new Employee(
                         resultSet.getString("first_name"),
