@@ -1,13 +1,11 @@
-package vtp.lab.database;
+package vtp.lab.services;
 
 import main.java.vtp.lab.PropertiesLoader;
 import main.java.vtp.lab.PropertiesSupplier;
 import vtp.lab.database.request_builder.EmployeeRequestBuilder;
 import vtp.lab.models.Employee;
 
-import javax.swing.*;
 import java.sql.*;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -132,5 +130,47 @@ public class DataBaseService {
             throwables.printStackTrace();
         }
         return result;
+    }
+
+    public static int deleteEmployee(Employee employee){
+        int result = 0;
+        try {
+            Connection connection = DataBaseService.getDataBaseConnection();
+            String query = "DELETE FROM hr_db.employee where id = " + getEmployeeId(employee);
+            Statement statement = connection.createStatement();
+            result = statement.executeUpdate(query);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return result;
+    }
+
+    private static int getEmployeeId(Employee employee){
+        int id = 0;
+        try {
+            Connection connection = DataBaseService.getDataBaseConnection();
+            String query = "SELECT e.id FROM hr_db.employee as e \n" +
+                    "inner join hr_db.titles_list as tts \n" +
+                    "on e.title = tts.id\n" +
+                    "where tts.title = '%s'\n" +
+                    "AND first_name = '%s'\n" +
+                    "AND last_name = '%s'\n" +
+                    "AND surname = '%s'";
+            String exactQuery = String.format(
+                    query,
+                    employee.getTitle(),
+                    employee.getFirstName(),
+                    employee.getLastName(),
+                    employee.getSurname());
+
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(exactQuery);
+            while (resultSet.next()) {
+                id = Integer.valueOf(resultSet.getString("id"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return id;
     }
 }

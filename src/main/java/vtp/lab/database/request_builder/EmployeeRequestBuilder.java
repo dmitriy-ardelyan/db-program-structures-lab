@@ -15,7 +15,7 @@ public class EmployeeRequestBuilder implements IEmployeeRequestBuilder {
     public IEmployeeRequestBuilder setSurname(String surname) {
         addWhereStatementIfNeeded();
         if (!surname.isEmpty()) {
-            String surnameSqlParameter = String.format(" surname like '%s%s' AND", surname, "%");
+            String surnameSqlParameter = String.format(" surname like '%s%s%s' AND", "%", surname, "%");
             request.append(surnameSqlParameter);
         }
         return this;

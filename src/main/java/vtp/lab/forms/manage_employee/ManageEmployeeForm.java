@@ -15,7 +15,6 @@ public class ManageEmployeeForm {
     private JLabel headerLabel;
     private JPanel filtersSubPanel;
     private JPanel userPanel;
-    private JLabel surnameFilterLabel;
     private JLabel titleFilterLabel;
     JButton updateUserButton;
     JButton deleteUserButton;
@@ -28,7 +27,38 @@ public class ManageEmployeeForm {
     private JTextField maxSalaryTextField;
     private JButton applyFiltersButton;
     private JTable searchResultTable;
+    private JLabel surnameLabel;
+    private JComboBox titleComboBox;
+    private JButton fetchFromDbButton;
+    private JButton addEmployeeButton;
+    private JPanel userDetailsPanel;
+    private JTextField firstNameTextField;
+    private JLabel editFirstNameLabel;
+    private JTextField textField1;
+    private JLabel lastNameLabel;
+    private JLabel editSurnameLabel;
+    private JTextField editSurnameTextField;
+    private JLabel editTitleLabel;
+    private JComboBox editTitleComboBox;
+    private JLabel editSalaryTextField;
+    private JTextField textField2;
     JFrame jFrame;
+
+    public JButton getAddEmployeeButton() {
+        return addEmployeeButton;
+    }
+
+    public JButton getFetchFromDbButton() {
+        return fetchFromDbButton;
+    }
+
+    public JButton getDeleteUserButton() {
+        return deleteUserButton;
+    }
+
+    public JComboBox getTitleComboBox() {
+        return titleComboBox;
+    }
 
     public JTextField getSurnameFilterTextField() {
         return surnameFilterTextField;
@@ -81,17 +111,31 @@ public class ManageEmployeeForm {
     }
 
     public void searchForEmployee(String surname, String title, String minSalary, String maxSalary) {
-        DefaultTableModel model = (DefaultTableModel) searchResultTable.getModel();
-        ArrayList<Employee> employees = Employee.searchEmployeesByParameters(surname, title, minSalary,maxSalary);
-        fillModelWithEmployees(model, employees);
+        if (surname.isEmpty() & title.isEmpty() & minSalary.isEmpty() & maxSalary.isEmpty()) {
+            fillTableWithAllEmployees();
+        } else {
+            DefaultTableModel model = (DefaultTableModel) searchResultTable.getModel();
+            ArrayList<Employee> employees = Employee.searchEmployeesByParameters(surname, title, minSalary, maxSalary);
+            fillModelWithEmployees(model, employees);
+        }
     }
 
-    private void fillTableWithAllEmployees() {
+    public void fillTableWithAllEmployees() {
         DefaultTableModel model = (DefaultTableModel) searchResultTable.getModel();
         ArrayList<Employee> employees = Employee.getAllEmployees();
         fillModelWithEmployees(model, employees);
     }
 
+    public Employee getSelectedEmployee(){
+        int selectedRow = searchResultTable.getSelectedRow();
+        String firstName = searchResultTable.getValueAt(selectedRow,0).toString();
+        String lastName = searchResultTable.getValueAt(selectedRow,1).toString();
+        String surname = searchResultTable.getValueAt(selectedRow,2).toString();
+        String title = searchResultTable.getValueAt(selectedRow,3).toString();
+        Float salary = Float.valueOf(searchResultTable.getValueAt(selectedRow,4).toString());
+        Employee employee = new Employee(firstName,lastName,surname,title,salary);
+        return employee;
+    }
     private void fillModelWithEmployees(DefaultTableModel model, ArrayList<Employee> employees) {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         model.setRowCount(0);

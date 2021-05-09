@@ -1,7 +1,6 @@
 package vtp.lab.forms.new_employee;
 
-import vtp.lab.database.DataBaseService;
-import vtp.lab.models.Employee;
+import vtp.lab.services.DataBaseService;
 
 import javax.swing.*;
 import java.awt.*;

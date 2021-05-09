@@ -1,6 +1,6 @@
 package vtp.lab.models;
 
-import vtp.lab.database.DataBaseService;
+import vtp.lab.services.DataBaseService;
 
 import java.util.ArrayList;
 

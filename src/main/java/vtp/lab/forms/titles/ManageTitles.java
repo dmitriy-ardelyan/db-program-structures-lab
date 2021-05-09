@@ -1,6 +1,6 @@
 package vtp.lab.forms.titles;
 
-import vtp.lab.database.DataBaseService;
+import vtp.lab.services.DataBaseService;
 
 import javax.swing.*;
 import javax.swing.border.Border;
