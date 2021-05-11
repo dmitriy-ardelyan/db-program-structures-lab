@@ -1,6 +1,7 @@
 package vtp.lab.forms.manage_employee;
 
 import vtp.lab.models.Employee;
+import vtp.lab.services.EmployeeService;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -8,6 +9,9 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ManageEmployeeForm {
+
+    private final static DecimalFormat decimalFormat = new DecimalFormat("#.##");
+
     private JPanel rootPanel;
     private JPanel northSubPanel;
     private JPanel southSubPanel;
@@ -16,9 +20,9 @@ public class ManageEmployeeForm {
     private JPanel filtersSubPanel;
     private JPanel userPanel;
     private JLabel titleFilterLabel;
-    JButton updateUserButton;
-    JButton deleteUserButton;
-    JButton cancelUserButton;
+    private JButton updateUserButton;
+    private JButton deleteUserButton;
+    private JButton cancelUserButton;
     private JTextField surnameFilterTextField;
     private JTextField titleFilterTextField;
     private JLabel minSalaryLabel;
@@ -32,17 +36,25 @@ public class ManageEmployeeForm {
     private JButton fetchFromDbButton;
     private JButton addEmployeeButton;
     private JPanel userDetailsPanel;
-    private JTextField firstNameTextField;
+    private JTextField editFirstNameTextField;
     private JLabel editFirstNameLabel;
-    private JTextField textField1;
+    private JTextField editLastNameTextField;
     private JLabel lastNameLabel;
     private JLabel editSurnameLabel;
     private JTextField editSurnameTextField;
     private JLabel editTitleLabel;
     private JComboBox editTitleComboBox;
-    private JLabel editSalaryTextField;
-    private JTextField textField2;
+    private JLabel editSalaryLabel;
+    private JTextField editSalaryTextField;
     JFrame jFrame;
+
+    public JButton getUpdateUserButton() {
+        return updateUserButton;
+    }
+
+    public JTable getSearchResultTable() {
+        return searchResultTable;
+    }
 
     public JButton getAddEmployeeButton() {
         return addEmployeeButton;
@@ -115,14 +127,14 @@ public class ManageEmployeeForm {
             fillTableWithAllEmployees();
         } else {
             DefaultTableModel model = (DefaultTableModel) searchResultTable.getModel();
-            ArrayList<Employee> employees = Employee.searchEmployeesByParameters(surname, title, minSalary, maxSalary);
+            ArrayList<Employee> employees = EmployeeService.searchEmployeesByParameters(surname, title, minSalary, maxSalary);
             fillModelWithEmployees(model, employees);
         }
     }
 
     public void fillTableWithAllEmployees() {
         DefaultTableModel model = (DefaultTableModel) searchResultTable.getModel();
-        ArrayList<Employee> employees = Employee.getAllEmployees();
+        ArrayList<Employee> employees = EmployeeService.getAllEmployees();
         fillModelWithEmployees(model, employees);
     }
 
@@ -137,7 +149,7 @@ public class ManageEmployeeForm {
         return employee;
     }
     private void fillModelWithEmployees(DefaultTableModel model, ArrayList<Employee> employees) {
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+
         model.setRowCount(0);
         for (Employee employee : employees) {
             model.addRow(new Object[]{
@@ -148,5 +160,24 @@ public class ManageEmployeeForm {
                     decimalFormat.format(employee.getSalary())
             });
         }
+    }
+
+    public void setupEditValues() {
+        Employee employee = getSelectedEmployee();
+        this.editFirstNameTextField.setText(employee.getFirstName());
+        this.editLastNameTextField.setText(employee.getLastName());
+        this.editSurnameTextField.setText(employee.getSurname());
+        this.editSalaryTextField.setText(String.valueOf(decimalFormat.format(employee.getSalary())));
+        this.editTitleComboBox.getModel().setSelectedItem(employee.getTitle());
+    }
+
+    public Employee getUpdatedEmployee() {
+        Employee employee = new Employee(
+                editFirstNameTextField.getText(),
+                editLastNameTextField.getText(),
+                editSurnameTextField.getText(),
+                editTitleComboBox.getSelectedItem().toString(),
+                Float.valueOf(editSalaryTextField.getText()));
+        return employee;
     }
 }

@@ -3,6 +3,7 @@ package vtp.lab.models;
 import vtp.lab.services.DataBaseService;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Employee {
     private String firstName;
@@ -59,11 +60,16 @@ public class Employee {
         this.salary = salary;
     }
 
-    public static ArrayList<Employee> getAllEmployees() {
-        return DataBaseService.getAllEmployees();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return Float.compare(employee.salary, salary) == 0 && firstName.equals(employee.firstName) && lastName.equals(employee.lastName) && surname.equals(employee.surname) && title.equals(employee.title);
     }
 
-    public static ArrayList<Employee> searchEmployeesByParameters(String surname, String title, String minSalary, String maxSalary) {
-        return DataBaseService.getEmployeesByParameters(surname, title, minSalary, maxSalary);
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, surname, title, salary);
     }
 }

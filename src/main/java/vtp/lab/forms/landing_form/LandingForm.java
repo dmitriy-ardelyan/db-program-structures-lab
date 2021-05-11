@@ -38,8 +38,4 @@ public class LandingForm {
     public LandingForm() {
         LandingFormController landingFormController = new LandingFormController(this);
     }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 }

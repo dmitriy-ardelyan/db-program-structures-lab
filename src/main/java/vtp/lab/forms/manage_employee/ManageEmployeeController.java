@@ -1,6 +1,7 @@
 package vtp.lab.forms.manage_employee;
 
 import vtp.lab.forms.new_employee.EmployeeRegistration;
+import vtp.lab.listeners.CustomListSelectionListener;
 import vtp.lab.services.DataBaseService;
 import vtp.lab.models.Employee;
 import vtp.lab.services.EmployeeService;
@@ -21,7 +22,13 @@ public class ManageEmployeeController implements ActionListener {
         this.manageEmployeeForm.getFetchFromDbButton().addActionListener(this);
         this.manageEmployeeForm.getDeleteUserButton().addActionListener(this);
         this.manageEmployeeForm.getAddEmployeeButton().addActionListener(this);
+        this.manageEmployeeForm.getUpdateUserButton().addActionListener(this);
+
+        CustomListSelectionListener customListSelectionListener = new CustomListSelectionListener(this.manageEmployeeForm);
+        this.manageEmployeeForm.getSearchResultTable().getSelectionModel().addListSelectionListener(customListSelectionListener);
+
         setValuesForTitlesDropDown();
+
         manageEmployeeForm.createTable();
     }
 
@@ -54,6 +61,25 @@ public class ManageEmployeeController implements ActionListener {
         if (e.getSource() == manageEmployeeForm.getAddEmployeeButton()) {
             EmployeeRegistration employeeRegistration = new EmployeeRegistration();
             employeeRegistration.formSetup();
+        }
+
+        if (e.getSource() == manageEmployeeForm.getUpdateUserButton()) {
+            Employee employee = manageEmployeeForm.getSelectedEmployee();
+            int employeeId = DataBaseService.getEmployeeId(employee);
+
+            Employee updatedEmployeeModel = manageEmployeeForm.getUpdatedEmployee();
+            if (employee.equals(updatedEmployeeModel)){
+                JOptionPane.showMessageDialog(null,
+                        "Employee not changed, nothing to save",
+                        "Warning",
+                        JOptionPane.PLAIN_MESSAGE);
+            } else{
+                EmployeeService.updateEmployee(employeeId,updatedEmployeeModel);
+                JOptionPane.showMessageDialog(null,
+                        "Employee updated, do fetch to see changes",
+                        "Warning",
+                        JOptionPane.PLAIN_MESSAGE);
+            }
         }
     }
 
