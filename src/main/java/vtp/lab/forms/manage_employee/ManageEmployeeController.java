@@ -1,7 +1,7 @@
 package vtp.lab.forms.manage_employee;
 
 import vtp.lab.forms.new_employee.EmployeeRegistration;
-import vtp.lab.listeners.CustomListSelectionListener;
+import vtp.lab.listeners.ManageEmployeeSelectionListener;
 import vtp.lab.services.DataBaseService;
 import vtp.lab.models.Employee;
 import vtp.lab.services.EmployeeService;
@@ -24,8 +24,8 @@ public class ManageEmployeeController implements ActionListener {
         this.manageEmployeeForm.getAddEmployeeButton().addActionListener(this);
         this.manageEmployeeForm.getUpdateUserButton().addActionListener(this);
 
-        CustomListSelectionListener customListSelectionListener = new CustomListSelectionListener(this.manageEmployeeForm);
-        this.manageEmployeeForm.getSearchResultTable().getSelectionModel().addListSelectionListener(customListSelectionListener);
+        ManageEmployeeSelectionListener manageEmployeeSelectionListener = new ManageEmployeeSelectionListener(this.manageEmployeeForm);
+        this.manageEmployeeForm.getSearchResultTable().getSelectionModel().addListSelectionListener(manageEmployeeSelectionListener);
 
         setValuesForTitlesDropDown();
 

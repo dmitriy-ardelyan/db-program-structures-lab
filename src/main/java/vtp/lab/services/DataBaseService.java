@@ -7,7 +7,6 @@ import vtp.lab.models.Employee;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -335,5 +334,76 @@ public class DataBaseService {
             throwables.printStackTrace();
         }
         return superriorManager;
+    }
+
+    public static int deleteSubordinateOfManager(String subordinateToRemove, String manager) {
+        int subordinateId = getEmployeeIdBySurname(subordinateToRemove);
+        int managerId = getEmployeeIdBySurname(manager);
+        int result = 0;
+        try {
+            Connection connection = DataBaseService.getDataBaseConnection();
+            String query = "delete from subordinates\n" +
+                    "where manager_id = '%s' AND subordinate_id = '%s'";
+            String customQuery = String.format(query, managerId, subordinateId);
+            Statement statement = connection.createStatement();
+            result = statement.executeUpdate(customQuery);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return result;
+    }
+
+    public static List<String> getResponsibilitiesOfEmployee(String subordinate) {
+        ArrayList<String> responsibilities = new ArrayList<>();
+        int employeeId = getEmployeeIdBySurname(subordinate);
+
+        try {
+            Connection connection = getDataBaseConnection();
+            String query = "select responsibilities_list.name from responsibilities_list where rid in (\n" +
+                    "select responsibility_id from duties where employee_id = '%s')";
+            String customRequest = String.format(query, employeeId);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(customRequest);
+            while (resultSet.next()) {
+                responsibilities.add(resultSet.getString("name"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return responsibilities;
+    }
+
+    public static int addResponsibilityToEmployee(String responsibilityToAdd, String employee) {
+        int employeeId = getEmployeeIdBySurname(employee);
+        int result = 0;
+        try {
+            Connection connection = DataBaseService.getDataBaseConnection();
+
+            String query = "Insert into duties(employee_id,responsibility_id) values " +
+                    "(%s,(Select rid from responsibilities_list where name = '%s'))";
+            String customQuery = String.format(query, employeeId, responsibilityToAdd);
+
+            Statement statement = connection.createStatement();
+            result = statement.executeUpdate(customQuery);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return result;
+    }
+
+    public static int deleteResponsibilityFromEmployee(String responsibilityToRemove, String employee) {
+        int employeeId = getEmployeeIdBySurname(employee);
+        int result = 0;
+        try {
+            Connection connection = DataBaseService.getDataBaseConnection();
+            String query = "delete from duties where employee_id = %s AND responsibility_id = " +
+                    "(Select rid from responsibilities_list where name = '%s')";
+            String customQuery = String.format(query, employeeId, responsibilityToRemove);
+            Statement statement = connection.createStatement();
+            result = statement.executeUpdate(customQuery);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return result;
     }
 }

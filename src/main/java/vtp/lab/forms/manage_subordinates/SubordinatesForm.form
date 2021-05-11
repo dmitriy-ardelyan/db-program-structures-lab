@@ -75,10 +75,12 @@
           </scrollpane>
           <component id="d958d" class="javax.swing.JLabel">
             <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="1" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Responsibilities"/>
+              <verticalAlignment value="1"/>
+              <verticalTextPosition value="1"/>
             </properties>
           </component>
           <scrollpane id="4f665" binding="responsibilitiesScrollPane">
@@ -104,7 +106,10 @@
           </component>
           <component id="53ab7" class="javax.swing.JComboBox" binding="addResponsibilityComboBox">
             <constraints>
-              <grid row="5" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="5" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="450" height="-1"/>
+                <preferred-size width="450" height="-1"/>
+              </grid>
             </constraints>
             <properties/>
           </component>
@@ -132,7 +137,7 @@
               <text value="Add Subordinate"/>
             </properties>
           </component>
-          <component id="19f7d" class="javax.swing.JButton" binding="removeSubordinate">
+          <component id="19f7d" class="javax.swing.JButton" binding="removeSubordinateButton">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>

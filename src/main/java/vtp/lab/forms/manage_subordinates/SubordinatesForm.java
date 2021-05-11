@@ -1,13 +1,10 @@
 package vtp.lab.forms.manage_subordinates;
 
 import vtp.lab.services.DataBaseService;
-import vtp.lab.services.EmployeeService;
 
 import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SubordinatesForm {
     private JLabel titleLabel;
@@ -25,9 +22,29 @@ public class SubordinatesForm {
     private JButton closeButton;
     private JButton addResponsibilityButton;
     private JButton addSubordinateButton;
-    private JButton removeSubordinate;
+    private JButton removeSubordinateButton;
     private JButton removeResponsibilityButton;
     JFrame jFrame;
+
+    public JList getResponsibilitiesList() {
+        return responsibilitiesList;
+    }
+
+    public JComboBox getAddResponsibilityComboBox() {
+        return addResponsibilityComboBox;
+    }
+
+    public JList getSubordinatesList() {
+        return subordinatesList;
+    }
+
+    public JButton getRemoveSubordinateButton() {
+        return removeSubordinateButton;
+    }
+
+    public JButton getRemoveResponsibilityButton() {
+        return removeResponsibilityButton;
+    }
 
     public JButton getCloseButton() {
         return closeButton;
@@ -57,8 +74,9 @@ public class SubordinatesForm {
         jFrame = new JFrame("Manage Subordinates");
         jFrame.setContentPane(this.mainPanel);
         jFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        jFrame.pack();
         jFrame.setLocationRelativeTo(null);
-        jFrame.setSize(700,500);
+        //jFrame.setSize(700,500);
         jFrame.setVisible(true);
     }
 
@@ -99,5 +117,24 @@ public class SubordinatesForm {
     public void displaySubordinates(String manager) {
         String[] subordinates = DataBaseService.getSubordinates(manager).toArray(new String[0]);
         subordinatesList.setListData(subordinates);
+    }
+
+    public void setupSubordinateResponsibilities() {
+        String subordinate = subordinatesList.getSelectedValue().toString();
+        String[] responsibilities = DataBaseService.getResponsibilitiesOfEmployee(subordinate).toArray(new String[0]);
+        responsibilitiesList.removeAll();
+        responsibilitiesList.setListData(responsibilities);
+    }
+
+    public void setupAddResponsibilityDropDownValues() {
+        addResponsibilityComboBox.removeAllItems();
+        String subordinate = subordinatesList.getSelectedValue().toString();
+        List<String> assignedResponsibilities =  DataBaseService.getResponsibilitiesOfEmployee(subordinate);
+        List<String> allResponsibilities = DataBaseService.getResponsibilities();
+        allResponsibilities.removeAll(assignedResponsibilities);
+        addResponsibilityComboBox.addItem("");
+        for (String str : allResponsibilities) {
+            addResponsibilityComboBox.addItem(str);
+        }
     }
 }

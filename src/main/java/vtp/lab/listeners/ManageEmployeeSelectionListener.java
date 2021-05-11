@@ -6,11 +6,11 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-public class CustomListSelectionListener implements ListSelectionListener {
+public class ManageEmployeeSelectionListener implements ListSelectionListener {
 
     private ManageEmployeeForm manageEmployeeForm;
 
-    public CustomListSelectionListener(ManageEmployeeForm manageEmployeeForm) {
+    public ManageEmployeeSelectionListener(ManageEmployeeForm manageEmployeeForm) {
         this.manageEmployeeForm = manageEmployeeForm;
     }
 
