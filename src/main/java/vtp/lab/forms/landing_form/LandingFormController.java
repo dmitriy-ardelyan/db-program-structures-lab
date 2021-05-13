@@ -2,7 +2,6 @@ package vtp.lab.forms.landing_form;
 
 import vtp.lab.forms.manage_employee.ManageEmployeeForm;
 import vtp.lab.forms.manage_responsibilities.ManageResponsibilities;
-import vtp.lab.forms.manage_responsibilities.ManageResponsibilitiesController;
 import vtp.lab.forms.manage_subordinates.SubordinatesForm;
 import vtp.lab.forms.new_employee.EmployeeRegistration;
 import vtp.lab.forms.titles.ManageTitles;

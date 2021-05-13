@@ -1,8 +1,5 @@
 package vtp.lab.models;
 
-import vtp.lab.services.DataBaseService;
-
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class Employee {
